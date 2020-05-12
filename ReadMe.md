@@ -1,7 +1,4 @@
-﻿KDE-diffusion
-=============
-
-Kernel density estimation via diffusion in 1d and 2d.
+﻿Kernel density estimation via diffusion in 1d and 2d.
 
 Provides the fast, adaptive kernel density estimator based on linear
 diffusion processes for one-dimensional and two-dimensional input data
