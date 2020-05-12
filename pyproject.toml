@@ -20,7 +20,7 @@ classifiers = [
 
 [tool.flit.metadata.requires-extra]
 test = ['pyTest']
-doc = ['Sphinx', 'reCommonmark', 'NumPy', 'SciPy']
+doc = ['Sphinx', 'reCommonmark']
 
 [tool.flit.metadata.urls]
 Documentation = 'https://kde-diffusion.readthedocs.io'
