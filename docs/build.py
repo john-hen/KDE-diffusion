@@ -17,23 +17,14 @@ site that could be deployed to a web server as is.
 """
 __license__ = 'MIT'
 
-
-# Input and output path:
-source = 'source'
-build  = 'build'
-
 # Dependencies
 from subprocess import run             # external processes
 from pathlib import Path               # file-system paths
-
-# Convert path names to path objects.
-source = Path(source)
-build  = Path(build)
 
 # Get absolute path to the folder this script resides in.
 here = Path(__file__).absolute().parent
 
 # Run Sphinx.
-result = run(f'sphinx-build -c {here} {source} {build}', cwd=here)
+result = run('sphinx-build . build', cwd=here)
 if result.returncode:
     raise RuntimeError(f'Error while building HTML source.')
