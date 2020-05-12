@@ -1,0 +1,8 @@
+/development/
+/documentation/
+/*.egg_info/
+**/__pycache__
+**/.pytest_cache
+*.lnk
+Thumbs.db
+cleanup.py
