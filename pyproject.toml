@@ -3,12 +3,14 @@ requires = ['flit_core >=2,<4']
 build-backend = 'flit_core.buildapi'
 
 [tool.flit.metadata]
+dist-name = 'KDE-diffusion'
 module = 'kde_diffusion'
 author = 'John Hennig'
 home-page = 'https://github.com/john-hennig/kde-diffusion'
 requires = ['NumPy', 'SciPy']
 requires-python = '>=3.6'
 description-file = 'ReadMe.md'
+keywords = 'kernel density estimation, statistics'
 classifiers = [
     'Programming Language :: Python :: 3',
     'Development Status :: 4 - Beta',
