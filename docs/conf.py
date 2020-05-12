@@ -27,11 +27,12 @@ extensions = [
     'sphinx.ext.mathjax',              # Render math via JavaScript.
 ]
 
-# Add the main folder and this folder here to the module search path.
-here = Path(__file__).absolute().parent
-main = here.parent
+# Add the project folder to the module search path.
+main = Path(__file__).absolute().parent.parent
 sys.path.insert(0, str(main))
-sys.path.insert(0, str(here))
+
+# Mock external dependencies so they are not required at build time.
+autodoc_mock_imports = ['numpy', 'scipy']
 
 # Import package.
 import kde_diffusion as package
@@ -97,7 +98,6 @@ nitpicky             = True            # Warn about missing references?
 
 # Code documentation
 add_module_names     = False           # Don't precede members with module name.
-autodoc_mock_imports = ['numpy', 'scipy']
 
 # HTML rendering
 html_theme           = 'sphinx_rtd_theme'
