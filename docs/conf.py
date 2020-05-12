@@ -97,6 +97,7 @@ nitpicky             = True            # Warn about missing references?
 
 # Code documentation
 add_module_names     = False           # Don't precede members with module name.
+autodoc_mock_imports = ['numpy', 'scipy']
 
 # HTML rendering
 html_theme           = 'sphinx_rtd_theme'

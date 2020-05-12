@@ -1,4 +1,0 @@
-commonmark
-numpy
-recommonmark
-scipy
