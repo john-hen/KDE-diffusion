@@ -1,5 +1,5 @@
 /development/
-/documentation/
+/docs/build/
 /*.egg_info/
 **/__pycache__
 **/.pytest_cache

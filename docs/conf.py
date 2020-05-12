@@ -89,7 +89,7 @@ license   = package.__license__
 
 # Source parsing
 master_doc           = 'index'         # start page
-source_suffix        = ['.rst', '.md'] # valid source-file suffixes
+source_suffix        = ['.md', '.rst'] # valid source-file suffixes
 exclude_patterns     = []              # files and folders to ignore
 language             = None            # language for auto-generated content
 todo_include_todos   = False           # Include "todo" and "todoList"?
