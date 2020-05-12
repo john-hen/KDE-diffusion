@@ -19,8 +19,8 @@ classifiers = [
     'Natural Language :: English']
 
 [tool.flit.metadata.requires-extra]
-test = ['pytest']
-doc = ['sphinx', 'recommonmark']
+test = ['pyTest']
+doc = ['Sphinx', 'reCommonmark', 'NumPy', 'SciPy']
 
 [tool.flit.metadata.urls]
 Documentation = 'https://kde-diffusion.readthedocs.io'
