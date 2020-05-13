@@ -21,7 +21,7 @@ classifiers = [
 
 [tool.flit.metadata.requires-extra]
 test = ['pyTest']
-doc = ['Sphinx', 'reCommonmark']
+doc = ['Sphinx', 'Sphinx-RTD-theme', 'reCommonmark']
 
 [tool.flit.metadata.urls]
 Documentation = 'https://kde-diffusion.readthedocs.io'
