@@ -16,9 +16,10 @@ import sphinx_rtd_theme                # Read-the-Docs theme
 import recommonmark                    # Markdown extension
 import recommonmark.transform          # Markdown transformations
 import commonmark                      # Markdown parser
-from pathlib import Path               # file paths
 import re                              # regular expressions
 import sys                             # system specifics
+from unittest.mock import MagicMock    # mock imports
+from pathlib import Path               # file-system paths
 
 extensions = [
     'recommonmark',                    # Accept Markdown as input.
@@ -33,8 +34,10 @@ sys.path.insert(0, str(main))
 
 # Mock external dependencies so they are not required at build time.
 autodoc_mock_imports = ['numpy', 'scipy']
+for package in ('numpy', 'scipy', 'scipy.fft', 'scipy.optimize'):
+    sys.modules[package] = MagicMock()
 
-# Import package.
+# Import package to make meta data available.
 import kde_diffusion as package
 
 
@@ -89,27 +92,27 @@ copyright = package.__copyright__
 license   = package.__license__
 
 # Source parsing
-master_doc           = 'index'         # start page
-source_suffix        = ['.md', '.rst'] # valid source-file suffixes
-exclude_patterns     = []              # files and folders to ignore
-language             = None            # language for auto-generated content
-todo_include_todos   = False           # Include "todo" and "todoList"?
-nitpicky             = True            # Warn about missing references?
+master_doc          = 'index'          # start page
+source_suffix       = ['.md', '.rst']  # valid source-file suffixes
+exclude_patterns    = []               # files and folders to ignore
+language            = None             # language for auto-generated content
+todo_include_todos  = False            # Include "todo" and "todoList"?
+nitpicky            = True             # Warn about missing references?
 
 # Code documentation
-add_module_names     = False           # Don't precede members with module name.
+add_module_names    = False            # Don't precede members with module name.
 
 # HTML rendering
-html_theme           = 'sphinx_rtd_theme'
-html_theme_path      = [sphinx_rtd_theme.get_html_theme_path()]
-html_theme_options   = {}
-templates_path       = ['layout']      # layout tweaks
-html_static_path     = ['style']       # style tweaks
-html_css_files       = ['custom.css']  # style sheets
-pygments_style       = 'trac'          # syntax highlighting style
-html_use_index       = False           # Create document index?
-html_copy_source     = False           # Copy documentation source files?
-html_show_copyright  = False           # Show copyright notice in footer?
-html_show_sphinx     = False           # Show Sphinx blurb in footer?
-html_favicon         = None            # browser icon
-html_logo            = None            # project logo
+html_theme          = 'sphinx_rtd_theme'
+html_theme_path     = [sphinx_rtd_theme.get_html_theme_path()]
+html_theme_options  = {}
+templates_path      = ['layout']       # layout tweaks
+html_static_path    = ['style']        # style tweaks
+html_css_files      = ['custom.css']   # style sheets
+pygments_style      = 'trac'           # syntax highlighting style
+html_use_index      = False            # Create document index?
+html_copy_source    = False            # Copy documentation source files?
+html_show_copyright = False            # Show copyright notice in footer?
+html_show_sphinx    = False            # Show Sphinx blurb in footer?
+html_favicon        = None             # browser icon
+html_logo           = None             # project logo

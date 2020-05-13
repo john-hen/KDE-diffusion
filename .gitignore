@@ -1,7 +1,7 @@
 /development/
 /docs/build/
+publish.cmd
 /dist/
-/*.egg_info/
 **/__pycache__
 **/.pytest_cache
 *.lnk
