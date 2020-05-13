@@ -1,5 +1,5 @@
 ﻿"""
-Demonstrates that refactoring barely changed the result.
+Demonstrates that refactoring barely affected 1d result.
 """
 __license__ = 'MIT'
 
@@ -23,14 +23,14 @@ from matplotlib import pyplot
 # Main                                 #
 ########################################
 
-# Parameters for data generation and evaluation.
+# Parameters from data generation and for evaluation.
 N = 1000
 l = 5
 n = 256
 xmin = -l
 xmax = +l
 
-# Load intermediate data from the Matlab reference implementation.
+# Load intermediate data from Matlab reference.
 here = Path(__file__).parent
 ref = loadmat(here/'kde1d.mat')
 for (key, value) in ref.items():
@@ -42,35 +42,26 @@ assert N == len(x)
 assert n == ref['n']
 assert n == len(ref['density'])
 
-# Determine data limits if none given.
-if None in (xmin, xmax):
-    delta = x.max() - x.min()
-    if xmin is None:
-        xmin = x.min() - delta/10
-    if xmax is None:
-        xmax = x.max() + delta/10
-
-# Determine the data range, required for scaling.
+# Determine data range, required for scaling.
 Δx = xmax - xmin
 
-# Determine the number of data points.
+# Determine number of data points.
 N = len(x)
 
-# Bin the samples on a regular grid.
+# Bin samples on regular grid.
 (binned, edges) = histogram(x, bins=n, range=(xmin, xmax))
 grid = edges[:-1]
 
-# Compute the 2d discrete cosine transform.
+# Compute 2d discrete cosine transform. Adjust first component.
 transformed = dct(binned/N)
 transformed[0] /= 2
 
-# Pre-compute squared indices and transform before solver loop.
+# Pre-compute squared indices and transform components before solver loop.
 k  = arange(n, dtype='float')
 k2 = k**2
 a2 = (transformed/2)**2
 
-# Solve for optimal diffusion time t*.
-
+# Define internal function to be solved iteratively.
 def ξγ(t, l=7):
     f = 2*π**(2*l) * sum(k2**l * a2 * exp(-π**2 * k2*t))
     for s in range(l-1, 1, -1):
@@ -80,22 +71,23 @@ def ξγ(t, l=7):
         f = 2*π**(2*s) * sum(k2**s * a2 * exp(-π**2 * k2*t))
     return (2*N*sqrt(π)*f)**(-2/5)
 
+# Solve for optimal diffusion time t*.
 ts = brentq(lambda t: t - ξγ(t), 0, 0.1)
 
-# Apply the Gaussian filter with the optimized kernel.
+# Apply Gaussian filter with optimized kernel.
 smoothed = transformed * exp(-π**2 * ts/2 * k**2)
 
-# Reverse the transformation.
+# Reverse transformation.
 smoothed[0] *= 2
 inverse = idct(smoothed)
 
-# Normalize the density.
+# Normalize density.
 density = inverse * n/Δx
 
 # Determine bandwidth from diffusion time.
 bandwidth = sqrt(ts) * Δx
 
-# Plot the (slightly different) density versus the reference.
+# Plot (slightly different) density versus reference.
 figure = pyplot.figure()
 axes = figure.add_subplot()
 axes.grid()

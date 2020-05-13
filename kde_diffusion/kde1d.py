@@ -22,7 +22,7 @@ from scipy.optimize import brentq
 
 def kde1d(x, n=1024, limits=None):
     """
-    Estimates the 1d density from discrete observations x.
+    Estimates the 1d density from discrete observations.
 
     The input is a list/array `x` of numbers that represent discrete
     observations of a random variable. They are binned on a grid of
@@ -48,7 +48,7 @@ def kde1d(x, n=1024, limits=None):
     # Convert to array in case a list is passed in.
     x = array(x)
 
-    # Round up the number of bins to the next power of 2.
+    # Round up number of bins to the next power of two.
     n = int(2**ceil(log2(n)))
 
     # Determine missing data limits.
@@ -66,22 +66,22 @@ def kde1d(x, n=1024, limits=None):
         if xmax is None:
             xmax = x.max() + delta/10
 
-    # Determine the data range, required for scaling.
+    # Determine data range, required for scaling.
     Δx = xmax - xmin
 
-    # Determine the number of data points.
+    # Determine number of data points.
     N = len(x)
 
-    # Bin the samples on a regular grid.
+    # Bin samples on regular grid.
     (binned, edges) = histogram(x, bins=n, range=(xmin, xmax))
     grid = edges[:-1]
 
-    # Compute the 2d discrete cosine transform.
+    # Compute 2d discrete cosine transform. Adjust first component.
     transformed = dct(binned/N)
     transformed[0] /= 2
 
-    # Pre-compute squared indices and transform before solver loop.
-    k  = arange(n, dtype='float')
+    # Pre-compute squared indices and transform components before solver loop.
+    k  = arange(n, dtype='float')      # "float" avoids integer overflow.
     k2 = k**2
     a2 = (transformed/2)**2
 
@@ -102,14 +102,14 @@ def kde1d(x, n=1024, limits=None):
     except ValueError:
         raise ValueError('Bandwidth optimization did not converge.') from None
 
-    # Apply the Gaussian filter with the optimized kernel.
+    # Apply Gaussian filter with optimized kernel.
     smoothed = transformed * exp(-π**2 * ts/2 * k**2)
 
-    # Reverse the transformation.
+    # Reverse transformation.
     smoothed[0] *= 2
     inverse = idct(smoothed)
 
-    # Normalize the density.
+    # Normalize density.
     density = inverse * n/Δx
 
     # Determine bandwidth from diffusion time.

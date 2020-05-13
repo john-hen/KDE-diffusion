@@ -1,5 +1,5 @@
 ﻿"""
-Reproduces the exact results as the reference implementation.
+Reproduces exact same results as 2d reference implementation.
 """
 __license__ = 'MIT'
 
@@ -29,13 +29,11 @@ from pathlib import Path
 ########################################
 
 def dct1d(data, weights):
-    """Computes the 1d discrete cosine transform."""
     reordered = vstack((data[::2], data[::-2]))
     return real(weights * fft(reordered, axis=0))
 
 
 def dct2d(data):
-    """Computes the 2d discrete cosine transform."""
     (a, b) = data.shape
     weights = 2 * exp(-1j * arange(a) * π/(2*a))
     weights[0] = 1
@@ -44,7 +42,6 @@ def dct2d(data):
 
 
 def idct1d(data, weights):
-    """Computes the 1d inverse discrete cosine transform."""
     inverse = real(ifft(weights*data, axis=0))
     (a, b) = data.shape
     reordered = zeros((a, b))
@@ -55,7 +52,6 @@ def idct1d(data, weights):
 
 
 def idct2d(data):
-    """Computes the 2d inverse discrete cosine transform."""
     (a, b) = data.shape
     weights = exp(1j * arange(a) * π/(2*a))
     weights = repeat(weights, b).reshape(a, b)
@@ -66,12 +62,16 @@ def idct2d(data):
 # Main                                 #
 ########################################
 
-# Parameters for data generation and evaluation.
+# Parameters from data generation and for evaluation.
 N = 1000
 l = 5
 n = 256
+xmin = -l
+xmax = +l
+ymin = -l
+ymax = +l
 
-# Load intermediate data from the Matlab reference implementation.
+# Load intermediate data from Matlab reference.
 here = Path(__file__).parent
 ref = loadmat(here/'kde2d.mat')
 for (key, value) in ref.items():
@@ -84,33 +84,25 @@ assert N == len(x)
 assert n == ref['n']
 assert n == ref['density'].shape[0]
 
-# Samples are two column vectors of x- and y-coordinates.
-samples = vstack((x, y)).T
-
-# Rescale the data to normalize the pixel grid.
-xmin = -l
-xmax = +l
-ymin = -l
-ymax = +l
+# Determine data ranges, required for scaling.
 Δx = xmax - xmin
 Δy = ymax - ymin
 
-# Bin the samples on the normalized pixel grid.
+# Bin samples on regular grid.
 (binned, xedges, yedges) = histogram2d(x, y, bins=n,
                                        range=((xmin, xmax), (ymin, ymax)))
 assert isclose(binned/N, ref['initial_data']).all()
 
-# Compute the 2d discrete cosine transform.
+# Compute 2d discrete cosine transform.
 transformed = dct2d(binned/N)
 assert isclose(transformed, ref['a']).all()
 
-# Pre-compute squared indices and transform before solver loop.
+# Pre-compute squared indices and transform components before solver loop.
 k  = arange(n, dtype='float')          # float avoids integer overflow.
 k2 = k**2
 a2 = transformed**2
 
-# Solve for optimal diffusion time t*.
-
+# Define internal functions to be solved iteratively.
 def γ(t):
     Σ = ψ(0, 2, t) + ψ(2, 0, t) + 2*ψ(1, 1, t)
     γ = (2*π*N*Σ)**(-1/3)
@@ -130,7 +122,7 @@ def ψ(i, j, t):
     wy = w * k2**j
     return (-1)**(i+j) * π**(2*(i+j)) * wy @ a2 @ wx
 
-
+# Solve for optimal diffusion time t*.
 ts = brentq(lambda t: t - γ(t), 0, 0.1)
 assert isclose(ts, ref['t_star'])
 
@@ -141,15 +133,15 @@ assert isclose(ts, ref['t_star'])
 tx1 = (ψ02**(3/4) / (4*π*N*ψ20**(3/4) * (ψ11 + sqrt(ψ02*ψ20))) )**(1/3)
 tx2 = (ψ20**(3/4) / (4*π*N*ψ02**(3/4) * (ψ11 + sqrt(ψ02*ψ20))) )**(1/3)
 
-# Apply the optimized Gaussian kernel.
+# Apply Gaussian filter with optimized kernel.
 smoothed = transformed * outer(exp(-π**2 * k2 * tx2/2),
                                exp(-π**2 * k2 * tx1/2))
 assert isclose(smoothed, ref['a_t']).all()
 
-# Reverse the transformation.
+# Reverse transformation.
 inverse = idct2d(smoothed)
 
-# Normalize the density.
+# Normalize density.
 density = inverse * n/Δx * n/Δy
 assert isclose(density.T, ref['density']).all()
 

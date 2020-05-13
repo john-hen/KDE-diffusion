@@ -23,7 +23,7 @@ from scipy.optimize import brentq
 
 def kde2d(x, y, n=256, limits=None):
     """
-    Estimates the 2d density from discrete observations (x, y).
+    Estimates the 2d density from discrete observations.
 
     The input is two lists/arrays `x` and `y` of numbers that represent
     discrete observations of a random variable with two coordinate
@@ -48,16 +48,16 @@ def kde2d(x, y, n=256, limits=None):
     `y` are not the same length.
     """
 
-    # Convert to arrays in case a lists are passed in.
+    # Convert to arrays in case lists are passed in.
     x = array(x)
     y = array(y)
 
-    # Make sure the number of data points is consistent.
+    # Make sure numbers of data points are consistent.
     N = len(x)
     if len(y) != N:
         raise ValueError('x and y must have the same length.')
 
-    # Round up the number of bins to the next power of 2.
+    # Round up number of bins to next power of two.
     n = int(2**ceil(log2(n)))
 
     # Determine missing data limits.
@@ -99,23 +99,22 @@ def kde2d(x, y, n=256, limits=None):
     Δx = xmax - xmin
     Δy = ymax - ymin
 
-    # Bin the samples on a regular grid.
+    # Bin samples on regular grid.
     (binned, xedges, yedges) = histogram2d(x, y, bins=n,
                                            range=((xmin, xmax), (ymin, ymax)))
     grid = (xedges[:-1], yedges[:-1])
 
-    # Compute the 2d discrete cosine transform.
+    # Compute discrete cosine transform. Adjust first component.
     transformed = dctn(binned/N)
     transformed[0, :] /= 2
     transformed[:, 0] /= 2
 
-    # Pre-compute squared indices and transform before solver loop.
+    # Pre-compute squared indices and transform components before solver loop.
     k  = arange(n, dtype='float')          # "float" avoids integer overflow.
     k2 = k**2
     a2 = transformed**2
 
     # Define internal functions to be solved iteratively.
-
     def γ(t):
         Σ = ψ(0, 2, t) + ψ(2, 0, t) + 2*ψ(1, 1, t)
         γ = (2*π*N*Σ)**(-1/3)
@@ -123,11 +122,11 @@ def kde2d(x, y, n=256, limits=None):
 
     def ψ(i, j, t):
         if i + j <= 4:
-            Σψ = ψ(i+1, j, t) + ψ(i, j+1, t)
+            Σ  = abs(ψ(i+1, j, t) + ψ(i, j+1, t))
             C  = (1 + 1/2**(i+j+1)) / 3
             Πi = product(arange(1, 2*i, 2))
             Πj = product(arange(1, 2*j, 2))
-            t  = (C*Πi*Πj / (π*N*abs(Σψ))) ** (1/(2+i+j))
+            t  = (C*Πi*Πj / (π*N*Σ)) ** (1/(2+i+j))
         w = 0.5 * ones(n)
         w[0] = 1
         w = w * exp(-π**2 * k2*t)
@@ -148,35 +147,37 @@ def kde2d(x, y, n=256, limits=None):
     tx1 = (ψ02**(3/4) / (4*π*N*ψ20**(3/4) * (ψ11 + sqrt(ψ02*ψ20))) )**(1/3)
     tx2 = (ψ20**(3/4) / (4*π*N*ψ02**(3/4) * (ψ11 + sqrt(ψ02*ψ20))) )**(1/3)
 
-    # Note: This uses the nomenclature from the paper. In the Matlab
-    # implementation tx1 is called t_y, while tx2 is t_x. It is strange
-    # that they are reversed. This may be related to the fact that
-    # image coordinates are typically in (y, x) index order, whereas
-    # matrices, such as the binned histogram, are in (x,y) index order.
-    # The Matlab code returns image-like index order. However, it never
-    # explicitly transposes the density matrix, even though it does
-    # start with a histogram, i.e. in matrix index order. It seems that
-    # this is implicitly done by the back transformation (idct2d),
-    # which in the Matlab code contains only one transposition, not two
-    # as in the implementation here. The latter is done in order to
-    # return the density in matrix index order, just like a histogram,
-    # which is the convention used by other kernel density estimators,
-    # such as SciPy's. It is possible that the reference implementation
-    # got this detail wrong. In most use cases, this would go unnoticed
-    # as the bandwidth value is often just discarded. Mistake or not,
-    # the code here returns the same bandwidth and density, except for
-    # the aforementioned transposition.
+    # Note:
+    # The above uses the nomenclature from the paper. In the Matlab
+    # reference, tx1 is called t_y, while tx2 is t_x. It is strange
+    # that they are reversed between the two sources. This may be
+    # related to the fact that image coordinates are typically in
+    # (y,x) index order, whereas matrices, such as the binned histogram
+    # (in Matlab as much as in Python), are in (x,y) order. However,
+    # the Matlab code eventually does return image-like index order,
+    # though it never explicitly transposes the density matrix. This
+    # is implicitly handled by its custom implementation of the
+    # inverse transformation (idct2d), which only employs one matrix
+    # transposition, not two as its forward counterpart (dct2d). It is
+    # not impossible that the reference implementation got this detail
+    # wrong. Which would mean that, unless x and y are perfectly
+    # symmetrical in terms of their value ranges, the bandwidth is
+    # reversed between the x- and y-axes, and so is the smoothing. In
+    # most use cases, this would go unnoticed, as the bandwidth values
+    # are often discarded and the mismatched smoothing is not obvious
+    # to a user who never knew the true density to begin with. Mistake
+    # or not, the code here returns the same result as the reference.
 
-    # Apply the optimized Gaussian kernel.
+    # Apply Gaussian filter with optimized kernel.
     smoothed = transformed * outer(exp(-π**2 * k2 * tx2/2),
                                    exp(-π**2 * k2 * tx1/2))
 
-    # Reverse the transformation.
+    # Reverse transformation.
     smoothed[0, :] *= 2
     smoothed[:, 0] *= 2
     inverse = idctn(smoothed)
 
-    # Normalize the density.
+    # Normalize density.
     density = inverse * n/Δx * n/Δy
 
     # Determine bandwidth from diffusion times.
