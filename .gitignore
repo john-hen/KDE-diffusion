@@ -1,9 +1,7 @@
-/development/
+/dev/
 /docs/build/
-publish.cmd
 /dist/
 **/__pycache__
 **/.pytest_cache
 *.lnk
 Thumbs.db
-cleanup.py
