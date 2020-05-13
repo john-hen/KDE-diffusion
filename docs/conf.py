@@ -5,8 +5,8 @@ The files in this folder are used to render the documentation of this
 package, from its source files, as a static web site. The renderer is
 the documentation generator Sphinx. It is configured by this very
 script and would be invoked on the command line via, on any operating
-system, via `sphinx-build . build`. The rendered HTML then ends up in
-the sub-folder `build`, where `index.html` is the start page.
+system, via `sphinx-build . rendered`. The static HTML then ends up in
+the sub-folder `rendered`, where `index.html` is the start page.
 
 The source files are the `.md` files here, where `index.md` maps to
 the start page, as well as the documentation string in the package's
