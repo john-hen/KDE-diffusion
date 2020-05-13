@@ -14,3 +14,5 @@ Read-the-Docs][4].
 [2]: https://mathworks.com/matlabcentral/fileexchange/14034
 [3]: https://mathworks.com/matlabcentral/fileexchange/17204
 [4]: https://kde-diffusion.readthedocs.io
+
+[![Documentation Status](https://readthedocs.org/projects/kde-diffusion/badge/?version=latest)](https://kde-diffusion.readthedocs.io/en/latest/?badge=latest)
