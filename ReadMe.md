@@ -10,9 +10,13 @@ Python, with added test coverage.
 For more information, refer to the [full documentation at
 Read-the-Docs][4].
 
+
 [1]: https://dx.doi.org/10.1214/10-AOS799
 [2]: https://mathworks.com/matlabcentral/fileexchange/14034
 [3]: https://mathworks.com/matlabcentral/fileexchange/17204
 [4]: https://kde-diffusion.readthedocs.io
 
-[![Documentation Status](https://readthedocs.org/projects/kde-diffusion/badge/?version=latest)](https://kde-diffusion.readthedocs.io/en/latest/?badge=latest)
+
+[![version](https://img.shields.io/pypi/v/kde-diffusion.svg)](https://pypi.python.org/pypi/kde-diffusion)
+[![downloads](https://pepy.tech/badge/kde-diffusion)](https://pepy.tech/project/kde-diffusion)
+[![documentation](https://readthedocs.org/projects/kde-diffusion/badge/?version=latest)](https://kde-diffusion.readthedocs.io/en/latest/?badge=latest)
