@@ -149,24 +149,16 @@ def kde2d(x, y, n=256, limits=None):
 
     # Note:
     # The above uses the nomenclature from the paper. In the Matlab
-    # reference, tx1 is called t_y, while tx2 is t_x. It is strange
-    # that they are reversed between the two sources. This may be
-    # related to the fact that image coordinates are typically in
-    # (y,x) index order, whereas matrices, such as the binned histogram
-    # (in Matlab as much as in Python), are in (x,y) order. However,
-    # the Matlab code eventually does return image-like index order,
-    # though it never explicitly transposes the density matrix. This
-    # is implicitly handled by its custom implementation of the
-    # inverse transformation (idct2d), which only employs one matrix
-    # transposition, not two as its forward counterpart (dct2d). It is
-    # not impossible that the reference implementation got this detail
-    # wrong. Which would mean that, unless x and y are perfectly
-    # symmetrical in terms of their value ranges, the bandwidth is
-    # reversed between the x- and y-axes, and so is the smoothing. In
-    # most use cases, this would go unnoticed, as the bandwidth values
-    # are often discarded and the mismatched smoothing is not obvious
-    # to a user who never knew the true density to begin with. Mistake
-    # or not, the code here returns the same result as the reference.
+    # reference, tx1 is called t_y, while tx2 is t_x. This is a curious
+    # change in notation. It may be related to the fact that image
+    # coordinates are typically in (y,x) index order, whereas matrices,
+    # such as the binned histogram (in Matlab as much as in Python),
+    # are in (x,y) order. The Matlab code eventually does return
+    # image-like index order, though it never explicitly transposes
+    # the density matrix. That is implicitly handled by its custom
+    # implementation of the inverse transformation (idct2d), which
+    # only employs one matrix transposition, not two as its forward
+    # counterpart (dct2d).
 
     # Apply Gaussian filter with optimized kernel.
     smoothed = transformed * outer(exp(-π**2 * k2 * tx2/2),
