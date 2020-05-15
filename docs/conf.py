@@ -4,16 +4,16 @@ Configuration file for rendering the documentation.
 The files in this folder are used to render the documentation of this
 package, from its source files, as a static web site. The renderer is
 the documentation generator Sphinx. It is configured by this very
-script and would be invoked on the command line via, on any operating
-system, via `sphinx-build . rendered`. The static HTML then ends up in
-the sub-folder `rendered`, where `index.html` is the start page.
+script and would be invoked on the command line, of any operating
+system, via `sphinx-build . rendered`. The static HTML then ends up
+in the sub-folder `rendered`, where `index.html` is the start page.
 
 The source files are the `.md` files here, where `index.md` maps to
-the start page, as well as the documentation string in the package's
-source code for the API documentation.
+the start page, as well as the documentation strings in the package's
+source code that provide the API documentation.
 
 All text may use mark-up according to the CommonMark specification of
-the Markdown syntax. The Sphinx extension `recommonmark` is used to
+the Markdown syntax. The Sphinx extension `reCommonMark` is used to
 convert Markdown to reStructuredText, Sphinx's native input format.
 """
 __license__ = 'MIT'

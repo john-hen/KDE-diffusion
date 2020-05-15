@@ -1,7 +1,7 @@
 ﻿Implementation
 --------------
 
-This Python implementation was developed based on the existing Matlab
+This Python library was developed based on the existing Matlab
 implementation for [1d][1] and [2d][2], which was used as the
 primary reference (albeit possibly in earlier versions previously
 stored at the same locations), and the [original paper][3] as a
@@ -20,18 +20,19 @@ or n dimensions, [`dct`][5]/[`dctn`][6] and [`idct`][7]/[`idctn`][8],
 as well as NumPy's [`histogram`][9] and [`histogram2d`][10], instead
 of the custom versions the Matlab reference employs.
 
-The reference uses a cosine transformation with a different weight for
-the very first component, one which appears to not be supported by
-SciPy. There is an easy work-around for that, which is used in the
-current code. It should however be possible to rewrite the algorithm
-in a more elegant way, one that avoids the work-around altogether.
+The reference uses a cosine transformation with a weight for the very
+first component that is different from the one in any of the four types
+of the transformation supported by SciPy. There is an easy work-around
+for that, which is used in the current code. It should however be
+possible to rewrite the algorithm in a more elegant way, one that avoids
+the work-around altogether.
 
 The Matlab implementation also bins the data somewhat differently in
 1d vs. the 2d case. This minor inconsistency was removed. The change
 is arguably insignificant as far the final results are concerned,
 but is a deviation nonetheless.
 
-In practical use, based on a handful of test cases, both implementations
+In practical use, based on a handful of tests, both implementations
 yield indiscernible results.
 
 The 2d density is returned in matrix index order, also known as
@@ -50,7 +51,7 @@ In very broad strokes, the method is this:
 * This leaves Gaussian kernels intact.
 * Gaussians are also elementary solutions to the diffusion equation.
 * Leverage this to define condition for optimal smoothing.
-* Solve optimum condition by iterating in Fourier space.
+* Find optimum by iteration in Fourier space.
 * Smooth transformed data with optimized Gaussian kernel.
 * Reverse transformation to obtain density estimation.
 
