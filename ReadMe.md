@@ -17,8 +17,8 @@ Read-the-Docs][4].
 [4]: https://kde-diffusion.readthedocs.io
 
 
-[![version](https://img.shields.io/pypi/v/kde-diffusion.svg)](https://pypi.python.org/pypi/kde-diffusion)
+[![release](https://img.shields.io/pypi/v/kde-diffusion.svg)](https://pypi.python.org/pypi/kde-diffusion)
 [![downloads](https://pepy.tech/badge/kde-diffusion)](https://pepy.tech/project/kde-diffusion)
-[![doi](https://zenodo.org/badge/263433787.svg)](https://zenodo.org/badge/latestdoi/263433787)
+[![citation](https://zenodo.org/badge/263433787.svg)](https://zenodo.org/badge/latestdoi/263433787)
 [![license](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![documentation](https://readthedocs.org/projects/kde-diffusion/badge/?version=latest)](https://kde-diffusion.readthedocs.io/en/latest/?badge=latest)
