@@ -8,7 +8,6 @@ modules.
 
 # Meta information
 __title__     = 'KDE-diffusion'
-__synopsis__  = 'Kernel density estimation via diffusion.'
 __version__   = '1.0.0'
 __date__      = '2020–05–14'
 __author__    = 'John Hennig'
