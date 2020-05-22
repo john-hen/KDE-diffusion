@@ -8,8 +8,8 @@ modules.
 
 # Meta information
 __title__     = 'KDE-diffusion'
-__version__   = '1.0.0'
-__date__      = '2020–05–14'
+__version__   = '1.0.1'
+__date__      = '2020–05–22'
 __author__    = 'John Hennig'
 __copyright__ = 'John Hennig'
 __license__   = 'MIT'
