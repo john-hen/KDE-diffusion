@@ -54,9 +54,12 @@ assumptions about the nature of the data.
 [7]: https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html
 
 
-Contents
---------
-* [Installation](installation.md)
-* [Usage](usage.md)
-* [Implementation](implementation.md)
-* [API](api.md)
+```eval_rst
+.. toctree::
+    :hidden:
+
+    installation
+    usage
+    implementation
+    api
+```
