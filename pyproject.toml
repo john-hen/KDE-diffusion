@@ -8,6 +8,8 @@ module = 'kde_diffusion'
 author = 'John Hennig'
 requires = ['NumPy', 'SciPy']
 requires-python = '>=3.6'
+license = 'MIT'
+home-page = 'https://pypi.org/project/KDE-diffusion'
 description-file = 'ReadMe.md'
 keywords = 'kernel density estimation, statistics'
 classifiers = [

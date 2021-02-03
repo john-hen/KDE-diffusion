@@ -1,6 +1,4 @@
-﻿"""
-Tests the 2d kernel density estimation.
-"""
+﻿"""Tests the 2d kernel density estimation."""
 __license__ = 'MIT'
 
 

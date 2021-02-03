@@ -29,11 +29,9 @@ the work-around altogether.
 
 The Matlab implementation also bins the data somewhat differently in
 1d vs. the 2d case. This minor inconsistency was removed. The change
-is arguably insignificant as far the final results are concerned,
-but is a deviation nonetheless.
-
-In practical use, based on a handful of tests, both implementations
-yield indiscernible results.
+is arguably insignificant as far as the final results are concerned,
+but is a deviation nonetheless. In practical use, based on a handful
+of tests, both implementations yield indiscernible results.
 
 The 2d density is returned in matrix index order, also known as
 Cartesian indexing, in which the first index (the matrix row) refers

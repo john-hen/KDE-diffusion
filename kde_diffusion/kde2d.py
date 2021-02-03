@@ -1,6 +1,4 @@
-﻿"""
-Kernel density estimation via diffusion for 2-dimensional input data.
-"""
+﻿"""Kernel density estimation via diffusion for 2-dimensional data."""
 __license__ = 'MIT'
 
 
@@ -27,8 +25,9 @@ def kde2d(x, y, n=256, limits=None):
 
     The input is two lists/arrays `x` and `y` of numbers that represent
     discrete observations of a random variable with two coordinate
-    components. The observations are binned on a grid of n×n points,
-    where `n` must be a power of 2 or will be coerced to the next one.
+    components. The observations are binned on a grid of n×n points.
+    `n` will be coerced to the next highest power of two if it isn't
+    one to begin with.
 
     Data `limits` may be specified as a tuple of tuples denoting
     `((xmin, xmax), (ymin, ymax))`. If any of the values are `None`,
@@ -104,7 +103,7 @@ def kde2d(x, y, n=256, limits=None):
                                            range=((xmin, xmax), (ymin, ymax)))
     grid = (xedges[:-1], yedges[:-1])
 
-    # Compute discrete cosine transform. Adjust first component.
+    # Compute discrete cosine transform, then adjust first component.
     transformed = dctn(binned/N)
     transformed[0, :] /= 2
     transformed[:, 0] /= 2
@@ -164,7 +163,7 @@ def kde2d(x, y, n=256, limits=None):
     smoothed = transformed * outer(exp(-π**2 * k2 * tx2/2),
                                    exp(-π**2 * k2 * tx1/2))
 
-    # Reverse transformation.
+    # Reverse transformation after adjusting first component.
     smoothed[0, :] *= 2
     smoothed[:, 0] *= 2
     inverse = idctn(smoothed)

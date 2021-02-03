@@ -1,6 +1,4 @@
-﻿"""
-Kernel density estimation via diffusion for 1-dimensional input data.
-"""
+﻿"""Kernel density estimation via diffusion for 1-dimensional data."""
 __license__ = 'MIT'
 
 
@@ -28,7 +26,7 @@ def kde1d(x, n=1024, limits=None):
     observations of a random variable. They are binned on a grid of
     `n` points within the data `limits`, if specified, or within
     the limits given by the values' range. `n` will be coerced to the
-    next power of two if it isn't one to begin with.
+    next highest power of two if it isn't one to begin with.
 
     The limits may be given as a tuple (`xmin`, `xmax`) or a single
     number denoting the upper bound of a range centered at zero.
@@ -48,7 +46,7 @@ def kde1d(x, n=1024, limits=None):
     # Convert to array in case a list is passed in.
     x = array(x)
 
-    # Round up number of bins to the next power of two.
+    # Round up number of bins to next power of two.
     n = int(2**ceil(log2(n)))
 
     # Determine missing data limits.
@@ -76,7 +74,7 @@ def kde1d(x, n=1024, limits=None):
     (binned, edges) = histogram(x, bins=n, range=(xmin, xmax))
     grid = edges[:-1]
 
-    # Compute 2d discrete cosine transform. Adjust first component.
+    # Compute 2d discrete cosine transform, then adjust first component.
     transformed = dct(binned/N)
     transformed[0] /= 2
 
@@ -105,7 +103,7 @@ def kde1d(x, n=1024, limits=None):
     # Apply Gaussian filter with optimized kernel.
     smoothed = transformed * exp(-π**2 * ts/2 * k**2)
 
-    # Reverse transformation.
+    # Reverse transformation after adjusting first component.
     smoothed[0] *= 2
     inverse = idct(smoothed)
 

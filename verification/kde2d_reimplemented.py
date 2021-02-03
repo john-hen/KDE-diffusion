@@ -1,6 +1,4 @@
-﻿"""
-Reproduces exact same results as 2d reference implementation.
-"""
+﻿"""Reproduces exact same results as 2d reference implementation."""
 __license__ = 'MIT'
 
 

@@ -1,6 +1,4 @@
-﻿"""
-Demonstrates that refactoring barely affected 1d result.
-"""
+﻿"""Demonstrates that refactoring barely affected 1d result."""
 __license__ = 'MIT'
 
 
