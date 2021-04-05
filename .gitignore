@@ -1,5 +1,6 @@
 /develop/
-/docs/rendered/
+/deploy/docs/
+/deploy/dist/
 /dist/
 **/__pycache__
 **/.pytest_cache
