@@ -1,5 +1,4 @@
-﻿Usage
------
+﻿# Usage
 
 Code example for one-dimensional input data:
 
@@ -53,5 +52,6 @@ histograms and kernel density estimations, or [science in general][1].
 Images, however, are universally indexed the other way around: y before
 x. This is why the density in the example is transposed before being
 displayed.
+
 
 [1]: https://stackoverflow.com/a/56917343

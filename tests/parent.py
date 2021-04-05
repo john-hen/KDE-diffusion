@@ -5,5 +5,5 @@ __license__ = 'MIT'
 import sys
 from pathlib import Path
 
-folder = Path(__file__).parent.parent.absolute()
+folder = Path(__file__).parent.parent.resolve()
 sys.path.insert(0, str(folder))

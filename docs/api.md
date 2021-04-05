@@ -1,10 +1,9 @@
-API
-===
+# API
 
 Code documentation of the public application programming interface
 provided by this library.
 
-```eval_rst
+```{eval-rst}
 .. currentmodule:: kde_diffusion
 
 .. autofunction:: kde1d

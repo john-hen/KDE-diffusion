@@ -1,24 +1,24 @@
-﻿Implementation
---------------
+﻿# Implementation
 
 This Python library was developed based on the existing Matlab
-implementation for [1d][1] and [2d][2], which was used as the
+implementation for [1d][kde1d] and [2d][kde2d], which was used as the
 primary reference (albeit possibly in earlier versions previously
-stored at the same locations), and the [original paper][3] as a
+stored at the same locations), and the [original paper][paper] as a
 secondary source, mostly to understand the nomenclature and general
 idea behind the method.
 
 The Matlab implementation was first rewritten in Python to give the
 exact same result, including intermediate steps, for the same test
-case: a univariate normal sampling. See the `verification` folder in
-the [source-code repository][4] for details.
+case: a univariate normal sampling. See the [`verification`][verif]
+folder in the source-code [repository][repo] for details.
 
 Subsequently, the Python code was refactored in order to blend in
 better with the existing software ecosystem, namely by leveraging
 SciPy's forward and backward discrete cosine transformation for one
-or n dimensions, [`dct`][5]/[`dctn`][6] and [`idct`][7]/[`idctn`][8],
-as well as NumPy's [`histogram`][9] and [`histogram2d`][10], instead
-of the custom versions the Matlab reference employs.
+or n dimensions, [`dct`][dct]/[`dctn`][dctn] and
+[`idct`][idct]/[`idctn`][idctn], as well as NumPy's [`histogram`][hist]
+and [`histogram2d`][hist2d], instead of the custom versions the Matlab
+reference employs.
 
 The reference uses a cosine transformation with a weight for the very
 first component that is different from the one in any of the four types
@@ -40,8 +40,8 @@ This is consistent with results returned by other kernel density
 estimations, such as SciPy's, as well as NumPy's 2d-histogram function.
 When saving or displaying the 2d density as an image, a different
 memory layout is expected and the index order has to be reversed: y
-before x. This comes down to a simple transposition, i.e. adding `.T`
-in the code.
+before x. This comes down to a simple transposition, i.e. adding
+[`.T`][dotT] in the code.
 
 In very broad strokes, the method is this:
 * Bin the data on a regular grid.
@@ -54,13 +54,15 @@ In very broad strokes, the method is this:
 * Reverse transformation to obtain density estimation.
 
 
-[1]:  https://mathworks.com/matlabcentral/fileexchange/14034
-[2]:  https://mathworks.com/matlabcentral/fileexchange/17204
-[3]:  https://dx.doi.org/10.1214/10-AOS799
-[4]:  https://github.com/john-hennig/kde-diffusion
-[5]:  https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.dct.html
-[6]:  https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.dctn.html
-[7]:  https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.idct.html
-[8]:  https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.idctn.html
-[9]:  https://numpy.org/doc/1.18/reference/generated/numpy.histogram.html
-[10]: https://numpy.org/doc/1.18/reference/generated/numpy.histogram2d.html
+[kde1d]:   https://mathworks.com/matlabcentral/fileexchange/14034
+[kde2d]:   https://mathworks.com/matlabcentral/fileexchange/17204
+[paper]:   https://dx.doi.org/10.1214/10-AOS799
+[verif]:   https://github.com/John-Hennig/KDE-diffusion/tree/master/verification
+[repo]:    https://github.com/john-hennig/kde-diffusion
+[dct]:     https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.dct.html
+[dctn]:    https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.dctn.html
+[idct]:    https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.idct.html
+[idctn]:   https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.idctn.html
+[hist]:    https://numpy.org/doc/stable/reference/generated/numpy.histogram.html
+[hist2d]:  https://numpy.org/doc/stable/reference/generated/numpy.histogram2d.html
+[dotT]:    https://numpy.org/doc/stable/reference/generated/numpy.ndarray.T.html

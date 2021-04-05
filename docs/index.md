@@ -1,5 +1,4 @@
-﻿KDE-diffusion
-=============
+﻿# KDE-diffusion
 
 Kernel density estimation is a statistical method to infer the
 *true* probability density function that governs the distribution of
@@ -54,12 +53,11 @@ assumptions about the nature of the data.
 [7]: https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html
 
 
-```eval_rst
-.. toctree::
-    :hidden:
+```{toctree}
+:hidden:
 
-    installation
-    usage
-    implementation
-    api
+installation
+usage
+implementation
+api
 ```
