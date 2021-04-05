@@ -5,7 +5,7 @@ __license__ = 'MIT'
 ########################################
 # Dependencies                         #
 ########################################
-import parent
+import parent # noqa F401
 from kde_diffusion import kde1d
 from pathlib import Path
 from numpy import isclose, load
@@ -16,6 +16,7 @@ from numpy import isclose, load
 ########################################
 reference = None
 
+
 def setup_module():
     global reference
     here = Path(__file__).parent
@@ -25,6 +26,7 @@ def setup_module():
 ########################################
 # Tests                                #
 ########################################
+
 def test_density():
     x = reference['x']
     N = reference['N']
@@ -41,6 +43,7 @@ def test_density():
 ########################################
 # Main                                 #
 ########################################
+
 if __name__ == '__main__':
     # Runs if test script is executed directly, and not via pytest.
     setup_module()
