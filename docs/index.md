@@ -43,15 +43,9 @@ The bandwidth selection is what makes kernel density estimation a
 non-parametric method, so that we avoid making — possibly misguided —
 assumptions about the nature of the data.
 
-
-[1]: https://dx.doi.org/10.1214/10-AOS799
-[2]: https://mathworks.com/matlabcentral/fileexchange/14034
-[3]: https://mathworks.com/matlabcentral/fileexchange/17204
-[4]: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html
-[5]: https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html
-[6]: https://kdepy.readthedocs.io
-[7]: https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html
-
+[![citation](https://zenodo.org/badge/263433787.svg)](https://zenodo.org/badge/latestdoi/263433787)
+[![license](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![source](https://img.shields.io/github/stars/John-Hennig/KDE-diffusion?style=social)](https://github.com/John-Hennig/KDE-diffusion)
 
 ```{toctree}
 :hidden:
@@ -61,3 +55,11 @@ usage
 implementation
 api
 ```
+
+[1]: https://dx.doi.org/10.1214/10-AOS799
+[2]: https://mathworks.com/matlabcentral/fileexchange/14034
+[3]: https://mathworks.com/matlabcentral/fileexchange/17204
+[4]: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html
+[5]: https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html
+[6]: https://kdepy.readthedocs.io
+[7]: https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html
