@@ -1,4 +1,5 @@
-﻿Kernel density estimation via diffusion in 1d and 2d.
+﻿# KDE-diffusion
+*Kernel density estimation via diffusion in 1d and 2d*
 
 Provides the fast, adaptive kernel density estimator based on linear
 diffusion processes for one-dimensional and two-dimensional input data
@@ -9,15 +10,14 @@ in Python, with added test coverage.
 
 Find the full [documentation on Read-the-Docs][docs].
 
-[![citation](https://zenodo.org/badge/263433787.svg)](https://zenodo.org/badge/latestdoi/263433787)
-[![license](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![release](https://img.shields.io/pypi/v/kde-diffusion.svg)](https://pypi.python.org/pypi/kde-diffusion)
-[![downloads](https://pepy.tech/badge/kde-diffusion)](https://pepy.tech/project/kde-diffusion)
-[![documentation](https://readthedocs.org/projects/kde-diffusion/badge/?version=latest)](https://kde-diffusion.readthedocs.io/en/latest/?badge=latest)
-
 [paper]: https://dx.doi.org/10.1214/10-AOS799
 [kde1d]: https://mathworks.com/matlabcentral/fileexchange/14034
 [kde2d]: https://mathworks.com/matlabcentral/fileexchange/17204
 [docs]:  https://kde-diffusion.readthedocs.io
 
-
+[![citation](https://zenodo.org/badge/263433787.svg)](https://zenodo.org/badge/latestdoi/263433787)
+[![license](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![release](https://img.shields.io/pypi/v/kde-diffusion.svg)](https://pypi.python.org/pypi/kde-diffusion)
+[![downloads](https://pepy.tech/badge/kde-diffusion)](https://pepy.tech/project/kde-diffusion)
+![coverage](tests/coverage.svg?raw=true)
+[![documentation](https://readthedocs.org/projects/kde-diffusion/badge/?version=latest)](https://kde-diffusion.readthedocs.io/en/latest/?badge=latest)

@@ -27,7 +27,7 @@ def setup_module():
 # Tests                                #
 ########################################
 
-def test_density():
+def test_reference():
     x = reference['x']
     N = reference['N']
     assert N == len(x)
@@ -40,11 +40,27 @@ def test_density():
     assert isclose(bandwidth, reference['bandwidth']).all()
 
 
+def test_arguments():
+    (density, grid, bandwidth) = kde1d([-2, -1, 0, +1, +2]*20, 4)
+    assert len(grid) == 4
+    assert isclose(grid.min(), -2.4)
+    assert isclose(grid.max(), +1.2)
+    (density, grid, bandwidth) = kde1d([-2, -1, 0, +1, +2]*20, 4, 2)
+    assert isclose(grid.min(), -2)
+    assert isclose(grid.max(), +1)
+    try:
+        kde1d([-2, -1, 0, +1, +2]*10, 4)
+        raised_error = False
+    except ValueError:
+        raised_error = True
+    assert raised_error
+
+
 ########################################
 # Main                                 #
 ########################################
 
 if __name__ == '__main__':
-    # Runs if test script is executed directly, and not via pytest.
     setup_module()
-    test_density()
+    test_reference()
+    test_arguments()

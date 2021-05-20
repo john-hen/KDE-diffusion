@@ -27,7 +27,7 @@ def setup_module():
 # Test                                 #
 ########################################
 
-def test_density():
+def test_reference():
     x = reference['x']
     y = reference['y']
     N = reference['N']
@@ -47,11 +47,49 @@ def test_density():
     assert isclose(bandwidth, reference['bandwidth']).all()
 
 
+def test_arguments():
+    samples = [-2, -1, 0, +1, +2]
+    (density, grid, bandwith) = kde2d(samples*5, samples*5, 16)
+    assert len(grid[0]) == 16
+    assert len(grid[1]) == 16
+    assert isclose(grid[0].min(), -3.0)
+    assert isclose(grid[0].max(), +2.625)
+    assert isclose(grid[1].min(), -3.0)
+    assert isclose(grid[1].max(), +2.625)
+    (density, grid, bandwidth) = kde2d(samples*5, samples*5, 16, (2, None))
+    assert isclose(grid[0].min(), -2)
+    assert isclose(grid[0].max(), +1.75)
+    assert isclose(grid[1].min(), -3)
+    assert isclose(grid[1].max(), +2.625)
+    (density, grid, bandwidth) = kde2d(samples*5, samples*5, 16, (None, 2))
+    assert isclose(grid[0].min(), -3)
+    assert isclose(grid[0].max(), +2.625)
+    assert isclose(grid[1].min(), -2)
+    assert isclose(grid[1].max(), +1.75)
+    (density, grid, bandwidth) = kde2d(samples*5, samples*5, 16, 2)
+    assert isclose(grid[0].min(), -2)
+    assert isclose(grid[0].max(), +1.75)
+    assert isclose(grid[1].min(), -2)
+    assert isclose(grid[1].max(), +1.75)
+    try:
+        kde2d(samples, samples*2, 16)
+        raised_error = False
+    except ValueError:
+        raised_error = True
+    assert raised_error
+    try:
+        kde2d(samples, samples, 16)
+        raised_error = False
+    except ValueError:
+        raised_error = True
+    assert raised_error
+
+
 ########################################
 # Main                                 #
 ########################################
 
 if __name__ == '__main__':
-    # Runs if test script is executed directly, and not via pytest.
     setup_module()
-    test_density()
+    test_reference()
+    test_arguments()

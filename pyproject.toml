@@ -22,8 +22,8 @@ classifiers = [
     'License :: OSI Approved :: MIT License']
 
 [tool.flit.metadata.requires-extra]
-test = ['pyTest']
-doc = ['Sphinx', 'Sphinx-RTD-theme', 'reCommonMark']
+doc = ['Sphinx', 'Sphinx-RTD-theme', 'MyST-parser', 'CommonMark']
+test = ['pyTest', 'pyTest-cov', 'coverage-badge', 'flake8']
 
 [tool.flit.metadata.urls]
 Documentation = 'https://kde-diffusion.readthedocs.io'

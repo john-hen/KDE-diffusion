@@ -1,6 +1,8 @@
 /develop/
 /deploy/docs/
 /deploy/dist/
+/deploy/coverage/
+/deploy/coverage.sqlite
 /dist/
 **/__pycache__
 **/.pytest_cache
