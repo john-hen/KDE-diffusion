@@ -1,5 +1,4 @@
 ﻿"""Kernel density estimation via diffusion for 1-dimensional data."""
-__license__ = 'MIT'
 
 
 ########################################

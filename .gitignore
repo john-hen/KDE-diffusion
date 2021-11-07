@@ -1,9 +1,9 @@
 /develop/
 /deploy/docs/
 /deploy/dist/
-/deploy/coverage/
-/deploy/coverage.sqlite
 /dist/
+/deploy/coverage/
+.coverage
 **/__pycache__
 **/.pytest_cache
 flake8.txt

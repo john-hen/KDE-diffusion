@@ -48,10 +48,7 @@ pyplot.show()
 Note that the density is returned in matrix index order, also known as
 Cartesian indexing, i.e. with the first index referring to the x-axis
 and the second to the y-axis. This is the common convention for 2d
-histograms and kernel density estimations, or [science in general][1].
+histograms and kernel density estimations, or science in general.
 Images, however, are universally indexed the other way around: y before
 x. This is why the density in the example is transposed before being
 displayed.
-
-
-[1]: https://stackoverflow.com/a/56917343

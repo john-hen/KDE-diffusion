@@ -1,5 +1,4 @@
 ﻿"""Reproduces exact same results as 1d reference implementation."""
-__license__ = 'MIT'
 
 
 ########################################

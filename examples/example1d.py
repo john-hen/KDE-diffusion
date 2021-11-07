@@ -1,7 +1,4 @@
-﻿"""
-Code example for one-dimensional input data.
-"""
-__license__ = 'MIT'
+﻿"""Code example for one-dimensional input data."""
 
 # Sample data points from normal distribution.
 from numpy.random import normal

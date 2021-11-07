@@ -1,14 +1,13 @@
 ﻿"""Tests the 2d kernel density estimation."""
-__license__ = 'MIT'
 
 
 ########################################
 # Dependencies                         #
 ########################################
-import parent # noqa F401
 from kde_diffusion import kde2d
-from pathlib import Path
-from numpy import isclose, load
+from pathlib       import Path
+from numpy         import isclose, load
+from pytest        import raises
 
 
 ########################################
@@ -71,25 +70,7 @@ def test_arguments():
     assert isclose(grid[0].max(), +1.75)
     assert isclose(grid[1].min(), -2)
     assert isclose(grid[1].max(), +1.75)
-    try:
+    with raises(ValueError):
         kde2d(samples, samples*2, 16)
-        raised_error = False
-    except ValueError:
-        raised_error = True
-    assert raised_error
-    try:
+    with raises(ValueError):
         kde2d(samples, samples, 16)
-        raised_error = False
-    except ValueError:
-        raised_error = True
-    assert raised_error
-
-
-########################################
-# Main                                 #
-########################################
-
-if __name__ == '__main__':
-    setup_module()
-    test_reference()
-    test_arguments()

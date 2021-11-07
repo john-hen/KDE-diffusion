@@ -1,17 +1,10 @@
-[build-system]
-requires = ['flit_core >=2,<4']
-build-backend = 'flit_core.buildapi'
+# Meta information: PyPI and pip
 
-[tool.flit.metadata]
-dist-name = 'KDE-diffusion'
-module = 'kde_diffusion'
-author = 'John Hennig'
-requires = ['NumPy', 'SciPy']
-requires-python = '>=3.6'
-license = 'MIT'
-home-page = 'https://pypi.org/project/KDE-diffusion'
-description-file = 'pypi.md'
-keywords = 'kernel density estimation, statistics'
+[project]
+name = 'KDE-diffusion'
+authors = [{name='John Hennig'}]
+license = {file='license.txt'}
+keywords = ['kernel density estimation', 'statistics']
 classifiers = [
     'Development Status :: 5 - Production/Stable',
     'Programming Language :: Python :: 3',
@@ -19,12 +12,71 @@ classifiers = [
     'Topic :: Scientific/Engineering :: Information Analysis',
     'Intended Audience :: Science/Research',
     'Natural Language :: English',
-    'License :: OSI Approved :: MIT License']
+    'License :: OSI Approved :: MIT License',
+]
+readme = 'pypi.md'
+requires-python = '>=3.6'
+dependencies = ['NumPy', 'SciPy']
+dynamic = ['version', 'description']
 
-[tool.flit.metadata.requires-extra]
-doc = ['Sphinx', 'Sphinx-RTD-theme', 'MyST-parser', 'CommonMark']
-test = ['pyTest', 'pyTest-cov', 'coverage-badge', 'flake8']
+[project.optional-dependencies]
+docs = ['Sphinx', 'Furo', 'MyST-parser', 'Commonmark']
+test = ['pyTest', 'pyTest-cov', 'coverage-badge', 'Flake8', 'pyproject-Flake8']
 
-[tool.flit.metadata.urls]
+[project.urls]
 Documentation = 'https://kde-diffusion.readthedocs.io'
-Source = 'https://github.com/john-hennig/kde-diffusion'
+Source = 'https://github.com/john-hen/kde-diffusion'
+
+
+# Wheel builder: flit
+
+[build-system]
+requires = ['flit_core >=2,<4']
+build-backend = 'flit_core.buildapi'
+
+[tool.flit.module]
+name = 'kde_diffusion'
+
+
+# Code linter: Flake8 (via pyproject-Flake8)
+
+[tool.flake8]
+exclude = [
+    '.git',
+    '__pycache__',
+    'develop',
+]
+ignore = [
+    'E127', 'E128',
+    'E201', 'E202',
+    'E221', 'E222',
+    'E226',
+    'E231',
+    'E241',
+    'E251',
+    'E261',
+    'E271', 'E272',
+    'E302', 'E305',
+    'E402',
+    'W503',
+    'E741',
+]
+per-file-ignores = ['__init__.py:F401']
+
+
+# Test runner: pyTest
+
+[tool.pytest.ini_options]
+addopts = '--verbose'
+testpaths = ['tests']
+filterwarnings = ['ignore::UserWarning']
+
+
+# Code coverage: Coverage.py
+
+[tool.coverage.run]
+source = ['kde_diffusion/']
+relative_files = true
+
+[tool.coverage.report]
+exclude_lines = ['pragma: no cover']

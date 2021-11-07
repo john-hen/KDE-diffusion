@@ -1,7 +1,7 @@
 ﻿# Installation
 
-The library is [available on PyPI][1] and can be readily installed
-via `pip`:
+The library is [available on PyPI][PyPI] and can be readily installed
+with Pip:
 ```none
 pip install KDE-diffusion
 ```
@@ -9,10 +9,10 @@ pip install KDE-diffusion
 Run `pip uninstall KDE-diffusion` in order to remove the package from
 your system.
 
-Requires [NumPy][2] and [SciPy][3], which `pip` will install
-automatically in case they are missing.
+Requires [NumPy] and [SciPy], which Pip will install automatically
+in case they are missing.
 
 
-[1]: https://pypi.org/project/KDE-diffusion/
-[2]: https://numpy.org/
-[3]: https://scipy.org/
+[PyPI]:  https://pypi.org/project/KDE-diffusion
+[NumPy]: https://numpy.org
+[SciPy]: https://scipy.org

@@ -15,10 +15,11 @@ folder in the source-code [repository][repo] for details.
 Subsequently, the Python code was refactored in order to blend in
 better with the existing software ecosystem, namely by leveraging
 SciPy's forward and backward discrete cosine transformation for one
-or n dimensions, [`dct`][dct]/[`dctn`][dctn] and
-[`idct`][idct]/[`idctn`][idctn], as well as NumPy's [`histogram`][hist]
-and [`histogram2d`][hist2d], instead of the custom versions the Matlab
-reference employs.
+or n dimensions, [`dct`](scipy:scipy.fft.dct)/[`dctn`](scipy:scipy.fft.dctn)
+and [`idct`](scipy:scipy.fft.idct)/[`idctn`](scipy:scipy.fft.idctn),
+as well as NumPy's [`histogram`](numpy:numpy.histogram) and
+[`histogram2d`](numpy:numpy.histogram2d), instead of the custom versions
+the Matlab reference employs.
 
 The reference uses a cosine transformation with a weight for the very
 first component that is different from the one in any of the four types
@@ -41,7 +42,7 @@ estimations, such as SciPy's, as well as NumPy's 2d-histogram function.
 When saving or displaying the 2d density as an image, a different
 memory layout is expected and the index order has to be reversed: y
 before x. This comes down to a simple transposition, i.e. adding
-[`.T`][dotT] in the code.
+[`.T`](numpy:numpy.ndarray.T) in the code.
 
 In very broad strokes, the method is this:
 * Bin the data on a regular grid.
@@ -57,12 +58,5 @@ In very broad strokes, the method is this:
 [kde1d]:   https://mathworks.com/matlabcentral/fileexchange/14034
 [kde2d]:   https://mathworks.com/matlabcentral/fileexchange/17204
 [paper]:   https://dx.doi.org/10.1214/10-AOS799
-[verif]:   https://github.com/John-Hennig/KDE-diffusion/tree/master/verification
-[repo]:    https://github.com/john-hennig/kde-diffusion
-[dct]:     https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.dct.html
-[dctn]:    https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.dctn.html
-[idct]:    https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.idct.html
-[idctn]:   https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.idctn.html
-[hist]:    https://numpy.org/doc/stable/reference/generated/numpy.histogram.html
-[hist2d]:  https://numpy.org/doc/stable/reference/generated/numpy.histogram2d.html
-[dotT]:    https://numpy.org/doc/stable/reference/generated/numpy.ndarray.T.html
+[verif]:   https://github.com/john-hen/KDE-diffusion/tree/main/verification
+[repo]:    https://github.com/john-hen/kde-diffusion

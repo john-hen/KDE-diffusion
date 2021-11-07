@@ -1,0 +1,40 @@
+﻿name: Test
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+
+    test:
+        strategy:
+            matrix:
+                python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out code.
+            uses: actions/checkout@v2
+
+          - name: Set up Python ${{ matrix.python-version }}.
+            uses: actions/setup-python@v2
+            with:
+                python-version: ${{ matrix.python-version }}
+
+          - name: Install package.
+            run: |
+                pip install --upgrade pip
+                pip install .[test,docs]
+                pip install flit
+
+          - name: Lint code.
+            run: pflake8
+
+          - name: Run tests.
+            run: pytest
+
+          - name: Build package.
+            run: python deploy/build.py
+
+          - name: Render docs.
+            run: python deploy/docs.py
+
+          - name: Clean repo.
+            run: python deploy/clean.py

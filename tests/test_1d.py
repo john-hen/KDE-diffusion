@@ -1,15 +1,13 @@
 ﻿"""Tests the 1d kernel density estimation."""
-__license__ = 'MIT'
 
 
 ########################################
 # Dependencies                         #
 ########################################
-import parent # noqa F401
 from kde_diffusion import kde1d
-from pathlib import Path
-from numpy import isclose, load
-
+from pathlib       import Path
+from numpy         import isclose, load
+from pytest        import raises
 
 ########################################
 # Fixtures                             #
@@ -48,19 +46,5 @@ def test_arguments():
     (density, grid, bandwidth) = kde1d([-2, -1, 0, +1, +2]*20, 4, 2)
     assert isclose(grid.min(), -2)
     assert isclose(grid.max(), +1)
-    try:
+    with raises(ValueError):
         kde1d([-2, -1, 0, +1, +2]*10, 4)
-        raised_error = False
-    except ValueError:
-        raised_error = True
-    assert raised_error
-
-
-########################################
-# Main                                 #
-########################################
-
-if __name__ == '__main__':
-    setup_module()
-    test_reference()
-    test_arguments()
