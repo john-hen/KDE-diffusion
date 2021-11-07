@@ -1,7 +1,7 @@
 ﻿Steps to take when releasing a new version:
-* Bump version number and enter current date in `__init__.py`.
+* Bump version number and enter current date in `meta.py`.
 * Add dedicated commit for the version bump.
-* Tag commit with version number, e.g. `git tag v1.0.3`.
+* Tag commit with version number, e.g. `git tag v1.0.4`.
 * Push the commit: `git push origin main`.
 * Check documentation build on Read-the-Docs.
 * Publish on PyPI by running `deploy/publish.py`.
