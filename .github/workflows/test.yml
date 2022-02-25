@@ -31,10 +31,10 @@ jobs:
             run: pytest
 
           - name: Build package.
-            run: python deploy/build.py
+            run: python tools/build.py
 
           - name: Render docs.
-            run: python deploy/docs.py
+            run: python tools/docs.py
 
           - name: Clean repo.
-            run: python deploy/clean.py
+            run: python tools/clean.py
