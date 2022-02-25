@@ -31,7 +31,7 @@ jobs:
             run: pytest
 
           - name: Build package.
-            run: python tools/build.py
+            run: python tools/wheel.py
 
           - name: Render docs.
             run: python tools/docs.py
