@@ -25,7 +25,7 @@ jobs:
                 pip install flit
 
           - name: Lint code.
-            run: pflake8
+            run: flake8p
 
           - name: Run tests.
             run: pytest
