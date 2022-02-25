@@ -17,7 +17,7 @@ with added test coverage.
     https://zenodo.org/badge/latestdoi/263433787)
 [![license](
     https://img.shields.io/badge/License-MIT-green.svg)](
-    https://opensource.org/licenses/MIT)
+    https://github.com/john-hen/KDE-diffusion/blob/main/license.txt)
 [![release](
     https://img.shields.io/pypi/v/kde-diffusion.svg?label=PyPI)](
     https://pypi.python.org/pypi/kde-diffusion)
