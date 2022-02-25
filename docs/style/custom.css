@@ -12,3 +12,15 @@ p + ul.simple {
 p + ol.simple {
     margin-top: -6px;
 }
+
+/* Hide edit button. */
+.edit-this-page {
+    visibility: hidden;
+}
+
+/* Hide page footer. */
+.bottom-of-page {
+    visibility: hidden;
+    margin:     0;
+    padding:    0;
+}
