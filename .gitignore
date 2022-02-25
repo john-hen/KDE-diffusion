@@ -1,11 +1,21 @@
-/develop/
-/deploy/docs/
-/deploy/dist/
-/dist/
-/deploy/coverage/
-.coverage
+# Build and test artifacts
 **/__pycache__
 **/.pytest_cache
-flake8.txt
-*.lnk
-Thumbs.db
+dist/
+tools/dist/
+tools/docs/
+tools/coverage/
+.coverage
+
+# Local developer tools and notes
+local/
+ignore/
+develop/
+dev/
+.vscode/
+.idea/
+.spyproject
+
+# Files auto-created by operating system
+**/Thumbs.db
+**/.DS_Store
