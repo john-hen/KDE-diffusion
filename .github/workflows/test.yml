@@ -11,30 +11,27 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - name: Check out code.
-            uses: actions/checkout@v2
+            uses: actions/checkout@v3
 
           - name: Set up Python ${{ matrix.python-version }}.
-            uses: actions/setup-python@v2
+            uses: actions/setup-python@v4
             with:
                 python-version: ${{ matrix.python-version }}
 
           - name: Install package.
-            run: |
-                pip install --upgrade pip
-                pip install .[test,docs]
-                pip install flit
+            run:  pip install .[dev]
 
           - name: Lint code.
-            run: flake8p
+            run:  flake8
 
           - name: Run tests.
-            run: pytest
+            run:  pytest
 
           - name: Build package.
-            run: python tools/wheel.py
+            run:  python tools/wheel.py
 
           - name: Render docs.
-            run: python tools/docs.py
+            run:  python tools/docs.py
 
           - name: Clean repo.
-            run: python tools/clean.py
+            run:  python tools/clean.py

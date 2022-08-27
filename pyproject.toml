@@ -1,4 +1,4 @@
-# Meta information: PyPI and pip
+# Project information: PyPI and pip
 
 [project]
 name = 'KDE-diffusion'
@@ -14,14 +14,26 @@ classifiers = [
     'Natural Language :: English',
     'License :: OSI Approved :: MIT License',
 ]
-readme = 'pypi.md'
-requires-python = '>=3.6'
-dependencies = ['NumPy', 'SciPy']
+readme = 'PyPI.md'
 dynamic = ['version', 'description']
+requires-python = '>= 3.6'
+dependencies = [
+    'NumPy',
+    'SciPy',
+]
 
 [project.optional-dependencies]
-docs = ['Sphinx', 'Furo', 'MyST-parser', 'Commonmark']
-test = ['pyTest', 'pyTest-cov', 'coverage-badge', 'Flake8', 'Flake8-pyproject']
+dev = [
+    'pyTest',
+    'pyTest-cov',
+    'coverage-badge',
+    'Flake8-pyproject',
+    'Sphinx',
+    'Furo',
+    'MyST-parser',
+    'Commonmark',
+    'Flit',
+]
 
 [project.urls]
 Documentation = 'https://kde-diffusion.readthedocs.io'
@@ -31,37 +43,41 @@ Source = 'https://github.com/john-hen/kde-diffusion'
 # Wheel builder: flit
 
 [build-system]
-requires = ['flit_core >=2,<4']
+requires = ['flit_core >= 2, < 4']
 build-backend = 'flit_core.buildapi'
 
 [tool.flit.module]
 name = 'kde_diffusion'
 
 
-# Code linter: Flake8 (via pyproject-Flake8)
+# Code linter: Flake8
 
 [tool.flake8]
 exclude = [
-    '.git',
-    '__pycache__',
-    'develop',
+    'local',
+    'ignore',
 ]
 ignore = [
-    'E127', 'E128',
-    'E201', 'E202',
-    'E221', 'E222',
-    'E226',
-    'E231',
-    'E241',
-    'E251',
-    'E261',
-    'E271', 'E272',
-    'E302', 'E305',
-    'E402',
-    'W503',
-    'E741',
+    'E127',        # Continuation line over-indented for visual indent.
+    'E128',        # Continuation line under-indented for visual indent.
+    'E201',        # Whitespace after '('.
+    'E202',        # Whitespace before ')'.
+    'E221',        # Multiple spaces before operator.
+    'E222',        # Multiple spaces after operator.
+    'E226',        # Missing whitespace around arithmetic operator.
+    'E231',        # Missing whitespace after ',', ';', or ':'.
+    'E241',        # Multiple spaces after ','.
+    'E251',        # Unexpected spaces around keyword / parameter equals.
+    'E261',        # At least two spaces before inline comment.
+    'E271',        # Multiple spaces after keyword.
+    'E272',        # Multiple spaces before keyword.
+    'E402',        # Module level import not at top of file.
+    'E741',        # Ambiguous variable name 'l'.
+    'W503',        # Line break occurred before a binary operator.
 ]
-per-file-ignores = ['__init__.py:F401']
+per-file-ignores = [
+    '__init__.py:F401',      # Imported but unused.
+]
 
 
 # Test runner: pyTest
@@ -69,7 +85,6 @@ per-file-ignores = ['__init__.py:F401']
 [tool.pytest.ini_options]
 addopts = '--verbose'
 testpaths = ['tests']
-filterwarnings = ['ignore::UserWarning']
 
 
 # Code coverage: Coverage.py
