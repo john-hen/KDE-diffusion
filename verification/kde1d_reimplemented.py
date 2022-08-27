@@ -89,6 +89,7 @@ a2 = (transformed[1:]/2)**2
 assert isclose(k2, ref['I']).all()
 assert isclose(a2, ref['a2']).all()
 
+
 # Define internal function to be solved iteratively.
 def ξγ(t, l=7):
     f = 2*π**(2*l) * sum(k2**l * a2 * exp(-π**2 * k2*t))
@@ -98,6 +99,7 @@ def ξγ(t, l=7):
         t = (2*C*K/N/f)**(2/(3+2*s))
         f = 2*π**(2*s) * sum(k2**s * a2 * exp(-π**2 * k2*t))
     return (2*N*sqrt(π)*f)**(-2/5)
+
 
 # Solve for optimal diffusion time t*.
 ts = brentq(lambda t: t - ξγ(t), 0, 0.1)

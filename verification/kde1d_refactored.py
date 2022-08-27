@@ -58,6 +58,7 @@ k  = arange(n, dtype='float')
 k2 = k**2
 a2 = (transformed/2)**2
 
+
 # Define internal function to be solved iteratively.
 def ξγ(t, l=7):
     f = 2*π**(2*l) * sum(k2**l * a2 * exp(-π**2 * k2*t))
@@ -67,6 +68,7 @@ def ξγ(t, l=7):
         t = (2*C*K/N/f)**(2/(3+2*s))
         f = 2*π**(2*s) * sum(k2**s * a2 * exp(-π**2 * k2*t))
     return (2*N*sqrt(π)*f)**(-2/5)
+
 
 # Solve for optimal diffusion time t*.
 ts = brentq(lambda t: t - ξγ(t), 0, 0.1)

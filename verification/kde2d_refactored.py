@@ -61,11 +61,13 @@ k  = arange(n, dtype='float')          # float avoids integer overflow.
 k2 = k**2
 a2 = transformed**2
 
+
 # Define internal functions to be solved iteratively.
 def γ(t):
     Σ = ψ(0, 2, t) + ψ(2, 0, t) + 2*ψ(1, 1, t)
     γ = (2*π*N*Σ)**(-1/3)
     return (t - γ) / γ
+
 
 def ψ(i, j, t):
     if i + j <= 4:
@@ -80,6 +82,7 @@ def ψ(i, j, t):
     wx = w * k2**i
     wy = w * k2**j
     return (-1)**(i+j) * π**(2*(i+j)) * wy @ a2 @ wx
+
 
 # Solve for optimal diffusion time t*.
 ts = brentq(lambda t: t - γ(t), 0, 0.1)
