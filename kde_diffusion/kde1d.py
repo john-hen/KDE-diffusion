@@ -7,7 +7,7 @@
 from numpy import array, arange
 from numpy import exp, sqrt, pi as π
 from numpy import ceil, log2
-from numpy import product
+from numpy import prod
 from numpy import histogram
 from scipy.fft import dct, idct
 from scipy.optimize import brentq
@@ -87,7 +87,7 @@ def kde1d(x, n=1024, limits=None):
         """Returns ξ γ^[l] as a function of diffusion time t."""
         f = 2*π**(2*l) * sum(k2**l * a2 * exp(-π**2 * k2*t))
         for s in range(l-1, 1, -1):
-            K = product(range(1, 2*s, 2)) / sqrt(2*π)
+            K = prod(range(1, 2*s, 2)) / sqrt(2*π)
             C = (1 + (1/2)**(s+1/2)) / 3
             t = (2*C*K/N/f)**(2/(3+2*s))
             f = 2*π**(2*s) * sum(k2**s * a2 * exp(-π**2 * k2*t))
