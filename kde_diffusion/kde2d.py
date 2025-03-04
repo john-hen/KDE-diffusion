@@ -8,7 +8,7 @@ from numpy import array, arange
 from numpy import exp, sqrt, pi as π
 from numpy import ceil, log2
 from numpy import ones
-from numpy import product, outer
+from numpy import prod, outer
 from numpy import histogram2d
 from scipy.fft import dctn, idctn
 from scipy.optimize import brentq
@@ -122,8 +122,8 @@ def kde2d(x, y, n=256, limits=None):
         if i + j <= 4:
             Σ  = abs(ψ(i+1, j, t) + ψ(i, j+1, t))
             C  = (1 + 1/2**(i+j+1)) / 3
-            Πi = product(arange(1, 2*i, 2))
-            Πj = product(arange(1, 2*j, 2))
+            Πi = prod(arange(1, 2*i, 2))
+            Πj = prod(arange(1, 2*j, 2))
             t  = (C*Πi*Πj / (π*N*Σ)) ** (1/(2+i+j))
         w = 0.5 * ones(n)
         w[0] = 1
