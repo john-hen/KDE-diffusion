@@ -10,7 +10,7 @@ from numpy import pi as π
 from numpy import zeros
 from numpy import real
 from numpy import hstack
-from numpy import product
+from numpy import prod as product
 from numpy import unique
 from numpy import histogram
 from numpy import isclose

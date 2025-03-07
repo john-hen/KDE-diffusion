@@ -7,7 +7,7 @@
 from numpy import arange
 from numpy import exp, sqrt
 from numpy import pi as π
-from numpy import product
+from numpy import prod as product
 from numpy import histogram
 from scipy.fft import dct, idct
 from scipy.optimize import brentq
