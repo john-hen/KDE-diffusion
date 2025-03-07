@@ -1,0 +1,18 @@
+# Configures the documentation build on Read-the-Docs.
+
+version: 2
+
+build:
+  os: ubuntu-lts-latest
+  tools:
+    python: "3"
+
+sphinx:
+   configuration: docs/conf.py
+
+python:
+   install:
+   - method: pip
+     path: .
+     extra_requirements:
+     - docs

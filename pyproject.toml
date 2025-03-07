@@ -24,16 +24,29 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = [
-    'pyTest',
-    'pyTest-cov',
-    'coverage-badge',
-    'Flake8-pyproject',
+docs = [
     'Sphinx',
     'Furo',
     'MyST-parser',
     'Commonmark',
-    'Flit',
+]
+
+[dependency-groups]
+test = [
+    'Flake8-pyproject',
+    'pyTest',
+    'pyTest-cov',
+    'coverage-badge',
+]
+docs = [
+    'Sphinx',
+    'Furo',
+    'MyST-parser',
+    'Commonmark',
+]
+dev = [
+    {include-group = 'test'},
+    {include-group = 'docs'},
 ]
 
 [project.urls]
