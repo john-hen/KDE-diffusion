@@ -1,0 +1,31 @@
+﻿# Regular tests against latest versions of all dependencies
+name: Test monthly
+
+on:
+    schedule:
+      - cron: '37 9 11 * *'           # On the 11th of every month at 9:37 a.m.
+    workflow_dispatch:
+
+jobs:
+
+    test:
+        runs-on: ubuntu-latest
+        steps:
+
+          - name: Check out code.
+            uses: actions/checkout@v4
+
+          - name: Set up latest stable Python.
+            uses: actions/setup-python@v4
+
+          - name: Install UV.
+            uses: astral-sh/setup-uv@v5
+            with:
+                enable-cache: true
+                cache-dependency-glob: "uv.lock"
+
+          - name: Install package.
+            run:  uv sync
+
+          - name: Run test suite.
+            run:  uv run pytest
