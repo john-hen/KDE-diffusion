@@ -3,6 +3,8 @@
 [project]
 name = 'KDE-diffusion'
 authors = [{name='John Hennig'}]
+version = '1.0.4'
+description = 'Kernel density estimation via diffusion in 1d and 2d'
 license = {file='license.txt'}
 keywords = ['kernel density estimation', 'statistics']
 classifiers = [
@@ -15,7 +17,6 @@ classifiers = [
     'License :: OSI Approved :: MIT License',
 ]
 readme = 'PyPI.md'
-dynamic = ['version', 'description']
 requires-python = '>= 3.6'
 dependencies = [
     'NumPy',

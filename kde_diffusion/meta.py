@@ -1,9 +1,14 @@
-﻿"""Meta information about the package."""
+"""Meta information about the application"""
 
-title     = 'KDE-diffusion'
-synopsis  = 'Kernel density estimation via diffusion in 1d and 2d'
-version   = '1.0.4'
-date      = '2021–11–07'
-author    = 'John Hennig'
-copyright = '2020, John Hennig'
-license   = 'MIT'
+import importlib.metadata
+
+name = 'KDE-diffusion'
+try:
+    metadata = importlib.metadata.metadata(name)
+except importlib.metadata.PackageNotFoundError:              # pragma: no cover
+    raise RuntimeError(
+        'Application name is wrong in package metadata.'
+    ) from None
+
+version = metadata['Version']
+summary = metadata['Summary']
