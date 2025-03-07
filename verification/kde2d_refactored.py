@@ -6,7 +6,7 @@
 ########################################
 from numpy import array, arange, ones
 from numpy import exp, sqrt, pi as π
-from numpy import product, outer
+from numpy import prod as product, outer
 from numpy import histogram2d
 from numpy import isclose
 from scipy.fft import dctn, idctn

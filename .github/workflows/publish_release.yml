@@ -18,9 +18,6 @@ jobs:
 
         - name: Install UV.
           uses: astral-sh/setup-uv@v5
-          with:
-              enable-cache: true
-              cache-dependency-glob: "uv.lock"
 
         - name: Build wheel.
           run:  uv build --wheel

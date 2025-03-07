@@ -8,7 +8,7 @@ from numpy import array, arange
 from numpy import exp, sqrt, pi as π
 from numpy import ceil, log2
 from numpy import ones
-from numpy import product, outer
+from numpy import prod as product, outer
 from numpy import histogram2d
 from scipy.fft import dctn, idctn
 from scipy.optimize import brentq

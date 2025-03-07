@@ -10,7 +10,7 @@ from numpy import pi as π
 from numpy import ones, zeros
 from numpy import real
 from numpy import vstack
-from numpy import product
+from numpy import prod as product
 from numpy import outer
 from numpy import histogram2d
 from numpy import repeat
