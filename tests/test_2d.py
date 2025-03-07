@@ -1,18 +1,11 @@
 ﻿"""Tests the 2d kernel density estimation."""
 
-
-########################################
-# Dependencies                         #
-########################################
 from kde_diffusion import kde2d
 from pathlib       import Path
 from numpy         import isclose, load
 from pytest        import raises
 
 
-########################################
-# Fixtures                             #
-########################################
 reference = None
 
 
@@ -22,15 +15,11 @@ def setup_module():
     reference = load(here/'reference2d.npz')
 
 
-########################################
-# Test                                 #
-########################################
-
 def test_reference():
     x = reference['x']
     y = reference['y']
     N = reference['N']
-    assert N == len(x)
+    assert len(x) == N
     n = reference['n']
     xmin = reference['xmin']
     xmax = reference['xmax']

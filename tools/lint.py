@@ -1,4 +1,4 @@
-﻿"""Runs the test suite."""
+﻿"""Lints the code for style errors."""
 
 from subprocess import run
 from pathlib import Path
@@ -6,4 +6,4 @@ from pathlib import Path
 
 root = Path(__file__).parent.parent
 
-run(['pytest'], cwd=root)
+run(['flake8'], cwd=root, check=True)

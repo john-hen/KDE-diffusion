@@ -3,12 +3,11 @@
 from pathlib import Path
 from shutil import rmtree
 
-root = Path(__file__).resolve().parent.parent
+
+root = Path(__file__).parent.parent
 
 folders = [
-    root/'tools'/'docs',
-    root/'tools'/'coverage',
-    root/'tools'/'dist',
+    root/'build',
     root/'dist',
 ]
 folder_names = [
