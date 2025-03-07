@@ -15,10 +15,10 @@ folder in the source-code [repository][repo] for details.
 Subsequently, the Python code was refactored in order to blend in
 better with the existing software ecosystem, namely by leveraging
 SciPy's forward and backward discrete cosine transformation for one
-or n dimensions, [`dct`](scipy:scipy.fft.dct)/[`dctn`](scipy:scipy.fft.dctn)
-and [`idct`](scipy:scipy.fft.idct)/[`idctn`](scipy:scipy.fft.idctn),
-as well as NumPy's [`histogram`](numpy:numpy.histogram) and
-[`histogram2d`](numpy:numpy.histogram2d), instead of the custom versions
+or n dimensions, [`dct`](#scipy.fft.dct)/[`dctn`](#scipy.fft.dctn)
+and [`idct`](#scipy.fft.idct)/[`idctn`](#scipy.fft.idctn),
+as well as NumPy's [`histogram`](#numpy.histogram) and
+[`histogram2d`](#numpy.histogram2d), instead of the custom versions
 the Matlab reference employs.
 
 The reference uses a cosine transformation with a weight for the very
@@ -42,7 +42,7 @@ estimations, such as SciPy's, as well as NumPy's 2d-histogram function.
 When saving or displaying the 2d density as an image, a different
 memory layout is expected and the index order has to be reversed: y
 before x. This comes down to a simple transposition, i.e. adding
-[`.T`](numpy:numpy.ndarray.T) in the code.
+[`.T`](#numpy.ndarray.T) in the code.
 
 In very broad strokes, the method is this:
 * Bin the data on a regular grid.

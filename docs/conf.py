@@ -11,8 +11,8 @@ The rendered HTML then ends up in the `output` folder, wherein
 The documentation source comprises the `.md` files here, of which
 `index.md` maps to the start page, as well as the doc-strings in the
 package's source code for the API documentation. The Markdown parser
-for `.md` files is MyST. For doc-strings it is Commonmark, which
-supports basic text formating, but no advanced features such as cross
+for `.md` files is MyST. For doc-strings it is CommonMark, which
+supports basic text formatting, but no advanced features such as cross
 references.
 """
 
@@ -51,11 +51,9 @@ from kde_diffusion import meta
 ########################################
 
 # Meta information
-project   = meta.title
-author    = meta.author
-copyright = meta.copyright
-version   = meta.version
-release   = version
+project = meta.name
+version = meta.version
+release = version
 
 # Web site
 html_title   = f'{project} {version}'  # document title
@@ -63,6 +61,7 @@ html_title   = f'{project} {version}'  # document title
 # Source parsing
 master_doc = 'index'                   # start page
 nitpicky   = True                      # Warn about missing references?
+exclude_patterns = ['ReadMe.md']       # Ignore ReadMe in this folder here.
 
 # Code documentation
 autodoc_default_options = {
@@ -82,9 +81,9 @@ intersphinx_mapping = {
 }
 
 # Rendering options
-html_copy_source     = False           # Copy documentation source files?
-html_show_copyright  = False           # Show copyright notice in footer?
-html_show_sphinx     = False           # Show Sphinx blurb in footer?
+html_copy_source    = False            # Copy documentation source files?
+html_show_copyright = False            # Show copyright notice in footer?
+html_show_sphinx    = False            # Show Sphinx blurb in footer?
 
 # Rendering style
 html_theme          = 'furo'           # Furo theme, with light and dark mode
@@ -99,7 +98,7 @@ html_css_files      = ['custom.css']   # extra style files to apply
 ########################################
 
 def docstring(app, what, name, obj, options, lines):
-    """Converts doc-strings from (Commonmark) Markdown to reStructuredText."""
+    """Converts doc-strings from (CommonMark) Markdown to reStructuredText."""
     md  = '\n'.join(lines)
     ast = commonmark.Parser().parse(md)
     rst = commonmark.ReStructuredTextRenderer().render(ast)
