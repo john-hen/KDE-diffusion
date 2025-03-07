@@ -3,15 +3,14 @@
 from subprocess import run
 from pathlib import Path
 
-here = Path(__file__).resolve().parent
-root = here.parent
+
+root = Path(__file__).parent.parent
 
 print('Running test suite.')
-run(['python', '-m', 'pytest', '--cov'], cwd=root)
+run(['pytest', '--cov'], cwd=root)
 
 print('Exporting coverage report.')
-folder = (here/'coverage').relative_to(root)
-run(['coverage', 'html', f'--directory={folder}'], cwd=root)
+run(['coverage', 'html', '--directory=build/coverage'], cwd=root)
 
 print('Rendering coverage badge.')
 badge = root/'tests'/'coverage.svg'

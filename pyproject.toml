@@ -33,7 +33,7 @@ docs = [
 
 [dependency-groups]
 test = [
-    'Flake8-pyproject',
+    'Ruff',
     'pyTest',
     'pyTest-cov',
     'coverage-badge',
@@ -51,7 +51,7 @@ dev = [
 
 [project.urls]
 Documentation = 'https://kde-diffusion.readthedocs.io'
-Source = 'https://github.com/john-hen/kde-diffusion'
+Source        = 'https://github.com/john-hen/kde-diffusion'
 
 
 # Build backend: Flit
@@ -64,34 +64,68 @@ build-backend = 'flit_core.buildapi'
 name = 'kde_diffusion'
 
 
-# Code linter: Flake8
+# Code linter: Ruff
 
-[tool.flake8]
-exclude = [
-    'local',
-    'ignore',
-]
-ignore = [
-    'E127',        # Continuation line over-indented for visual indent.
-    'E128',        # Continuation line under-indented for visual indent.
-    'E201',        # Whitespace after '('.
-    'E202',        # Whitespace before ')'.
-    'E221',        # Multiple spaces before operator.
-    'E222',        # Multiple spaces after operator.
-    'E226',        # Missing whitespace around arithmetic operator.
-    'E231',        # Missing whitespace after ',', ';', or ':'.
-    'E241',        # Multiple spaces after ','.
-    'E251',        # Unexpected spaces around keyword / parameter equals.
-    'E261',        # At least two spaces before inline comment.
-    'E271',        # Multiple spaces after keyword.
-    'E272',        # Multiple spaces before keyword.
-    'E402',        # Module level import not at top of file.
-    'E741',        # Ambiguous variable name 'l'.
-    'W503',        # Line break occurred before a binary operator.
-]
-per-file-ignores = [
-    '__init__.py:F401',      # Imported but unused.
-]
+[tool.ruff]
+line-length    = 79
+indent-width   = 4
+target-version = 'py37'
+include = ['kde_diffusion/**/*.py', 'tests/**/*.py', 'pyproject.toml']
+
+    [tool.ruff.format]
+    # The project does not actually use the Ruff formatter (only the linter),
+    # but these settings would be used if it did.
+    quote-style = 'single'
+    line-ending = 'cr-lf'
+
+    [tool.ruff.lint]
+    preview = true
+    select = [
+        'F',                  # basic linter rules
+        'E',                  # code style errors
+        'W',                  # code style warnings
+        'B',                  # possible bugs
+        'C4',                 # correct comprehensions
+        'FA',                 # future annotations
+        'PIE',                # miscellaneous lints
+        'ARG',                # unused function arguments
+        'RSE',                # raised exceptions
+        'Q',                  # quotation marks
+        'SIM',                # simplifiable code
+        'PERF',               # performance anti-pattens
+        'PT',                 # pyTest style
+        'PTH',                # pathlib use mandatory
+        'ERA',                # commented-out code
+        'T10',                # debugger calls
+        'UP',                 # upgradable code
+        'RUF100',             # unnecessary `noqa` directives
+    ]
+    ignore = [
+        'E201',               # whitespace after (
+        'E202',               # whitespace before (
+        'E221',               # missing whitespace before operator
+        'E226',               # missing whitespace around operator
+        'E241',               # multiple spaces after comma
+        'E251',               # unexpected spaces around keyword equals
+        'E272',               # multiple spaces before keyword
+        'E731',               # assignment of `lambda` expression
+        'E741',               # ambiguous variable name: `l`
+        'SIM108',             # ternary operator instead of if-else
+        'PT011',              # `pytest.raises(ValueError)` too broad
+        'PT013',              # incorrect pytest import
+        'PTH201',             # never use `Path('.')`
+    ]
+
+    [tool.ruff.lint.per-file-ignores]
+    '__init__.py' = [
+        'F401',               # imported but unused
+    ]
+
+    [tool.ruff.lint.flake8-quotes]
+    inline-quotes    = 'single'
+    multiline-quotes = 'double'
+    docstring-quotes = 'double'
+    avoid-escape     = true
 
 
 # Test runner: pyTest

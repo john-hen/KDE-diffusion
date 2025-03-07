@@ -1,12 +1,9 @@
 # Build and test artifacts
+build/
 uv.lock
+.coverage
 **/__pycache__
 **/.pytest_cache
-dist/
-tools/dist/
-tools/docs/
-tools/coverage/
-.coverage
 
 # Code editors
 .vscode/
