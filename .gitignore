@@ -7,15 +7,11 @@ tools/docs/
 tools/coverage/
 .coverage
 
-# Local developer tools and notes
-local/
-ignore/
-develop/
-dev/
+# Code editors
 .vscode/
 .idea/
 .spyproject
 
-# Files auto-created by operating system
+# OS cruft
 **/Thumbs.db
 **/.DS_Store

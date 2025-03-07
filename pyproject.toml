@@ -1,11 +1,10 @@
-# Project information: PyPI and pip
+# Project meta information
 
 [project]
 name = 'KDE-diffusion'
 authors = [{name='John Hennig'}]
 version = '1.0.4'
 description = 'Kernel density estimation via diffusion in 1d and 2d'
-license = {file='license.txt'}
 keywords = ['kernel density estimation', 'statistics']
 classifiers = [
     'Development Status :: 5 - Production/Stable',
@@ -13,10 +12,11 @@ classifiers = [
     'Operating System :: OS Independent',
     'Topic :: Scientific/Engineering :: Information Analysis',
     'Intended Audience :: Science/Research',
-    'Natural Language :: English',
-    'License :: OSI Approved :: MIT License',
 ]
+license = 'MIT'
+license-files = ['license.txt']
 readme = 'PyPI.md'
+
 requires-python = '>= 3.6'
 dependencies = [
     'NumPy',
@@ -41,10 +41,10 @@ Documentation = 'https://kde-diffusion.readthedocs.io'
 Source = 'https://github.com/john-hen/kde-diffusion'
 
 
-# Wheel builder: flit
+# Build backend: Flit
 
 [build-system]
-requires = ['flit_core >= 2, < 4']
+requires      = ['flit_core >= 3.11']
 build-backend = 'flit_core.buildapi'
 
 [tool.flit.module]
@@ -84,14 +84,14 @@ per-file-ignores = [
 # Test runner: pyTest
 
 [tool.pytest.ini_options]
-addopts = '--verbose'
+addopts  = '--verbose'
 testpaths = ['tests']
 
 
 # Code coverage: Coverage.py
 
 [tool.coverage.run]
-source = ['kde_diffusion/']
+source         = ['kde_diffusion/']
 relative_files = true
 
 [tool.coverage.report]
