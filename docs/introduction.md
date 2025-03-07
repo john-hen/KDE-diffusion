@@ -44,8 +44,8 @@ assumptions about the nature of the data.
 [paper]:   https://dx.doi.org/10.1214/10-AOS799
 [1d]:      https://mathworks.com/matlabcentral/fileexchange/14034
 [2d]:      https://mathworks.com/matlabcentral/fileexchange/17204
-[scipy]:   scipy:scipy.stats.gaussian_kde
-[sklearn]: sklearn:sklearn.neighbors.KernelDensity
-[gfilter]: scipy:scipy.ndimage.gaussian_filter
+[scipy]:   #scipy.stats.gaussian_kde
+[sklearn]: #sklearn.neighbors.KernelDensity
+[gfilter]: #scipy.ndimage.gaussian_filter
 [KDEpy's]: https://kdepy.readthedocs.io
-[fftkde]:  kdepy:KDEpy.FFTKDE.FFTKDE
+[fftkde]:  #KDEpy.FFTKDE.FFTKDE

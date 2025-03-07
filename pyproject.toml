@@ -28,7 +28,7 @@ docs = [
     'Sphinx',
     'Furo',
     'MyST-parser',
-    'Commonmark',
+    'CommonMark',
 ]
 
 [dependency-groups]
