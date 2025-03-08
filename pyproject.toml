@@ -19,7 +19,7 @@ readme = 'PyPI.md'
 
 requires-python = '>= 3.6'
 dependencies = [
-    'NumPy',
+    'NumPy < 2',
     'SciPy',
 ]
 
